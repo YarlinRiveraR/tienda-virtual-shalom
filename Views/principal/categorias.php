@@ -33,14 +33,14 @@
                                 <img class="card-img rounded-0 img-fluid" src="<?php echo $producto['imagen']; ?>">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white" href="#"><i class="fas fa-heart"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="<?php echo BASE_URL . 'principal/detail/' . $producto['id']; ?>"><i class="fas fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="#"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none"><?php echo $producto['nombre']; ?></a>
+                                <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id']; ?>" class="h3 text-decoration-none"><?php echo $producto['nombre']; ?></a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">
@@ -67,24 +67,25 @@
                     <?php } ?>
                 </div>
                 <div div="row">
-                    <!-- <ul class="pagination pagination-lg justify-content-end">
-                        ?php 
+                    <ul class="pagination pagination-lg justify-content-end">
+                        <?php 
                         $anterior = $data['pagina'] - 1;
                         $siguiente = $data['pagina'] + 1;
+                        $url = BASE_URL .'principal/categorias/' . $data['id_categoria'];
                         if ($data['pagina'] > 1) {
                             echo '<li class="page-item">
-                                    <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="'.$anterior.'" 
+                                    <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="'. $url . '/' . $anterior.'" 
                                         >Anterior</a>
                                 </li>';
                         }
                         if ($data['total'] >= $siguiente) {
                             echo '<li class="page-item">
                                 <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-white" 
-                                    href="'.$siguiente.'">Siguiente</a>
+                                    href="'. $url . '/' .$siguiente.'">Siguiente</a>
                             </li>';
                         }
                         ?>
-                    </ul> -->
+                    </ul>
                 </div>
             </div>
 
