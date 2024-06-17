@@ -67,8 +67,8 @@
                     <?php } ?>
                 </div>
                 <div div="row">
-                    <ul class="pagination pagination-lg justify-content-end">
-                        <?php 
+                    <!-- <ul class="pagination pagination-lg justify-content-end">
+                        ?php 
                         $anterior = $data['pagina'] - 1;
                         $siguiente = $data['pagina'] + 1;
                         if ($data['pagina'] > 1) {
@@ -84,7 +84,7 @@
                             </li>';
                         }
                         ?>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
 
