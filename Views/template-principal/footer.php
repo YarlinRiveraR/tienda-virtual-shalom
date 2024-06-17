@@ -93,16 +93,14 @@
     </footer>
     <!-- End Footer -->
 
-    <!-- Start Script -->
-    <script src="http://localhost/tienda-virtual-shalom/assets/js/jquery-1.11.0.min.js"></script>
-    <script src="http://localhost/tienda-virtual-shalom/assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="http://localhost/tienda-virtual-shalom/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="http://localhost/tienda-virtual-shalom/assets/js/templatemo.js"></script>
-    <script src="http://localhost/tienda-virtual-shalom/assets/js/custom.js"></script>
-    
-    <!-- <script src="assets/js/jquery-1.11.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
-    <script src="assets/js/custom.js"></script> -->
+    <!-- Start Script --> 
+    <script src="<?php echo BASE_URL; ?>assets/js/jquery-1.11.0.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/js/templatemo.js"></script>
+    <script src="<?php echo BASE_URL; ?>assets/js/custom.js"></script>
+    <script>
+        const base_url = '<?php echo BASE_URL; ?>';
+    </script>
+    <script src="<?php echo BASE_URL; ?>assets/js/carrito.js"></script>
     <!-- End Script -->
