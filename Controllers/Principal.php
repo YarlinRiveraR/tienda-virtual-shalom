@@ -72,4 +72,55 @@ class Principal extends Controller
         $data['title'] = 'Contactos';
         $this->views->getView('principal', "contact", $data);
     }
+    //vista lista deseos
+    public function deseo()
+    {
+        $data['title'] = 'Tu lista de ';
+        $this->views->getView('principal', "deseo", $data);
+    }
+    //obtener productos a partir de la lista de deseo
+    public function listaDeseo()
+    {
+        $datos =  file_get_contents('php://input');
+        $json = json_decode($datos, true);
+        $result = array();
+        foreach ($json as $producto) {
+            $result = $this->model->getListaDeseo($producto['idProducto']);
+            $data['id'] = $result['id'];
+            $data['nombre'] = $result['nombre'];
+            $data['precio'] = $result['precio'];
+            $data['cantidad'] = $producto['cantidad'];
+            $data['imagen'] = $result['imagen'];
+            array_push($array, $data);
+        }
+        echo json_encode($array, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    //obtener producto a partir de la lista de carrito
+    public function listaCarrito()
+    {
+        $datos = file_get_contents('php://input');
+        $json = json_decode($datos, true);
+        $array['productos'] = array();
+        $total = 0.00;
+        if (!empty($json)) {
+            foreach ($json as $producto) {
+                $result = $this->model->getProducto($producto['idProducto']);
+                $data['id'] = $result['id'];
+                $data['nombre'] = $result['nombre'];
+                $data['precio'] = $result['precio'];
+                $data['cantidad'] = $producto['cantidad'];
+                $data['imagen'] = $result['imagen'];
+                $subTotal = $result['precio'] * $producto['cantidad'];
+                $data['subTotal'] = number_format($subTotal, 2);
+                array_push($array['productos'], $data);
+                $total += $subTotal;
+            }
+        }        
+        $array['total'] = number_format($total, 2);
+        $array['totalPaypal'] = number_format($total, 2, '.', '');
+        $array['moneda'] = MONEDA;
+        echo json_encode($array, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }

@@ -139,12 +139,12 @@
                             </ul>
 
                             <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
+                                <input type="hidden" id="idProducto" value="<?php echo $data['producto']['id']; ?>">
                                 <div class="row">
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
+                                                <input type="hidden" id="product-size" value="S">
                                             </li>
                                             <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
                                             <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
@@ -156,7 +156,7 @@
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 Cantidad
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                                                <input type="hidden" id="product-quanity" value="1">
                                             </li>
                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
                                             <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
@@ -169,7 +169,7 @@
                                         <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Comprar</button>
                                     </div>
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Añadir al carrito</button>
+                                        <button type="button" class="btn btn-success btn-lg" id="btnAddCart">Añadir al carrito</button>
                                     </div>
                                 </div>
                             </form>
@@ -191,21 +191,21 @@
 
             <!--Start Carousel Wrapper-->
             <div id="carousel-related-product">
-                <?php foreach ($data['relacionados'] as $relacion) { ?>
+                <?php foreach ($data['relacionados'] as $producto) { ?>
                 <div class="p-2 pb-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="<?php echo $relacion['imagen']; ?>">
+                            <img class="card-img rounded-0 img-fluid" src="<?php echo $producto['imagen']; ?>">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
                                     <li><a class="btn btn-success text-white" href="#"><i class="fas fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="<?php echo BASE_URL . 'principal/detail/' . $relacion['id']; ?>"><i class="fas fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="#"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2" href="<?php echo BASE_URL . 'principal/detail/' . $producto['id']; ?>"><i class="fas fa-eye"></i></a></li>
+                                    <li><a class="btn btn-success text-white mt-2 btnAddCarrito" href="#" prod="<?php echo $producto['id']; ?>"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-body">
-                            <a href="<?php echo BASE_URL . 'principal/detail/' . $relacion['id']; ?>" class="h3 text-decoration-none"><?php echo $relacion['nombre']; ?></a>
+                            <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id']; ?>" class="h3 text-decoration-none"><?php echo $producto['nombre']; ?></a>
                             <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                 <li>M/L/X/XL</li>
                                 <li class="pt-2">
@@ -225,7 +225,7 @@
                                     <i class="text-muted fa fa-star"></i>
                                 </li>
                             </ul>
-                            <p class="text-center mb-0"><?php echo MONEDA . ' ' . $relacion['precio']; ?></p>
+                            <p class="text-center mb-0"><?php echo MONEDA . ' ' . $producto['precio']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -239,6 +239,8 @@
 
 
     <?php include_once 'Views/template-principal/footer.php'; ?>
+
+    <script src="<?php echo BASE_URL; ?>assets/js/modulos/detail.js"></script>
 
     <!-- Start Slider Script -->
     <script src="<?php echo BASE_URL; ?>assets/js/slick.min.js"></script>
