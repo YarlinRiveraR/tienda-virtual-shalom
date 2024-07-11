@@ -126,14 +126,6 @@
 
                             <h6>Descripción:</h6>
                             <p><?php echo $data['producto']['descripcion']; ?></p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>White / Black</strong></p>
-                                </li>
-                            </ul>
 
                             <h6>Specification:</h6>
                             <ul class="list-unstyled pb-3">
