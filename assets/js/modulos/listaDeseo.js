@@ -26,12 +26,13 @@ function getListaDeseo() {
                     </td>
                     <td>
                     <button class="btn btn-danger btnEliminarDeseo" type="button" prod="${producto.id}"><i class="fas fa-trash"></i></button>
-                    <button class="btn btn-primary" type="button"><i class="fas fa-cart-plus"></i></button>
+                    <button class="btn btn-primary btnAddCart" type="button" prod="${producto.id}"><i class="fas fa-cart-plus"></i></button>
                     </td>
                 </tr>`;
             });
             tableLista.innerHTML = html;
             btnEliminarDeseo();
+            btnAgregarProducto();
         }
     }
 }
@@ -60,4 +61,15 @@ function eliminarListaDeseo(idProducto) {
         'PRODUCTO ELIMINADO DE TU LISTA',
         'success'
     )
+}
+
+//agregar productos desde la lista de deseos
+function btnAgregarProducto() {
+    let listaAgregar = document.querySelectorAll('.btnAddCart');
+    for (let i = 0; i < listaAgregar.length; i++) {
+        listaAgregar[i].addEventListener('click', function () {
+            let idProducto = listaAgregar[i].getAttribute('prod');
+            agregarCarrito(idProducto, 1, true);
+        })
+    }
 }

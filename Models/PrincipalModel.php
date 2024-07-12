@@ -40,12 +40,6 @@ class PrincipalModel extends Query{
         $sql = "SELECT * FROM productos WHERE id_categoria = $id_categoria AND id != $id_producto ORDER BY RAND() LIMIT 20";
         return $this->selectAll($sql);
     }
-    //obtener productos a partir de la lista de deseo
-    public function getListaDeseo($id_producto)
-    {
-        $sql = "SELECT * FROM productos WHERE id = $id_producto";
-        return $this->select($sql);
-    }
 }
  
 ?>

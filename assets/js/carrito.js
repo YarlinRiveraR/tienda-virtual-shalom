@@ -58,7 +58,7 @@ function agregarDeseo(idProducto) {
 
     listaDeseo.push({
         "idProducto": idProducto,
-        "cantidad": cantidad
+        "cantidad": 1
     });
     localStorage.setItem('listaDeseo', JSON.stringify(listaDeseo));
     Swal.fire(
@@ -77,42 +77,16 @@ function cantidadDeseo() {
         btnDeseo.textContent = 0;
     }
 }
-
-
-
-
-
-// let listaCarrito;
-// document.addEventListener("DOMContentLoaded", function () {
-//     if (localStorage.getItem("listaCarrito") != null) {
-//         listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
-//     }
-
-//     for (let i = 0; i < btnAddCarrito.length; i++) {
-//         btnAddCarrito[i].addEventListener("click", function (e) {
-//             e.preventDefault();
-//             let idProducto = btnAddCarrito[i].getAttribute("prod");
-//             agregarCarrito(idProducto, 1);
-//         });
-//     }
-//     cantidadCarrito();
-
-//     //ver carrito
-//     const myModal = new bootstrap.Modal(document.getElementById('myModal'))
-//     verCarrito.addEventListener('click', function(){
-//         getListaCarrito();
-//         myModal.show();
-//     })
-// });
-
-
 //agregar productos al carrito
-function agregarCarrito(idProducto, cantidad) {
+function agregarCarrito(idProducto, cantidad, accion = false) {
     if(localStorage.getItem("listaCarrito") == null){
         listaCarrito = [];
     } else{
         let listaExiste = JSON.parse(localStorage.getItem("listaCarrito"));
         for (let i = 0; i < listaExiste.length; i++) {
+            if (accion) {
+                eliminarListaDeseo(idProducto);
+            }
             if (listaExiste[i]["idProducto"] == idProducto) {
                 Swal.fire("Aviso?", "EL PRODUCTO YA ESTA AGREGADO", "warning")
                 return;

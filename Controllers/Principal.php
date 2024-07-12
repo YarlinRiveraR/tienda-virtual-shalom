@@ -85,7 +85,7 @@ class Principal extends Controller
         $json = json_decode($datos, true);
         $array['productos'] = array();
         foreach ($json as $producto) {
-            $result = $this->model->getListaDeseo($producto['idProducto']);
+            $result = $this->model->getProducto($producto['idProducto']);
             $data['id'] = $result['id'];
             $data['nombre'] = $result['nombre'];
             $data['precio'] = $result['precio'];
