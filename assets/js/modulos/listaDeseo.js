@@ -15,10 +15,10 @@ function getListaDeseo() {
             res.forEach(producto => {
                 html += `<tr>
                     <td>
-                    <img class="img-thumbnail rounded-circle" src="${producto.imagen}" alt="" width="200">
+                    <img class="img-thumbnail rounded-circle" src="${base_url + producto.imagen}" alt="" width="200">
                     </td>
                     <td>${producto.nombre}</td>
-                    <td>${producto.precio}</td>
+                    <td>${res.moneda + ' ' +producto.precio}</td>
                     <td>${producto.cantidad}</td>
                     <td><button class="btn btn-danger" type="button">Eliminar</button></td>
                 </tr>`;

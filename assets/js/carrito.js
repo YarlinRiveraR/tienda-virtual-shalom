@@ -3,7 +3,7 @@ const btnCarrito = document.querySelector("#btnCantidadCarrito");
 const verCarrito = document.querySelector('#verCarrito');
 const tableListaCarrito = document.querySelector('#tableListaCarrito tbody');
 
-const btnAddDeseo = document.querySelectorAll('.btnAddDeseo');
+const btnAddDeseo = document.querySelectorAll(".btnAddDeseo");
 const btnDeseo = document.querySelector('#btnCantidadDeseo');
 
 let listaDeseo;
@@ -39,9 +39,9 @@ function agregarDeseo(idProducto) {
     }
 
     listaDeseo.push({
-        idProducto: idProducto,
-        cantidad: 1
-    })
+        "idProducto": idProducto,
+        "cantidad": 1
+    });
     localStorage.setItem('listaDeseo', JSON.stringify(listaDeseo));
     Swal.fire(
         'Aviso?',
@@ -52,7 +52,7 @@ function agregarDeseo(idProducto) {
 }
 
 function cantidadDeseo() {
-    let listas = JSON.parse(localStorage.getItem('listaDeseo'));
+    let listas = JSON.parse(localStorage.getItem("listaDeseo"));
     if (listas != null) {
         btnDeseo.textContent = listas.length;
     } else {
