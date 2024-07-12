@@ -6,20 +6,38 @@ const tableListaCarrito = document.querySelector('#tableListaCarrito tbody');
 const btnAddDeseo = document.querySelectorAll(".btnAddDeseo");
 const btnDeseo = document.querySelector('#btnCantidadDeseo');
 
-let listaDeseo;
+let listaDeseo, listaCarrito;
 document.addEventListener('DOMContentLoaded', function () {
     if (localStorage.getItem('listaDeseo') != null) {
         listaDeseo = JSON.parse(localStorage.getItem('listaDeseo'));
     }
-    cantidadDeseo();
+    if (localStorage.getItem("listaCarrito") != null) {
+        listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
+    }
     for (let i = 0; i < btnAddDeseo.length; i++) {
         btnAddDeseo[i].addEventListener('click', function () {
             let idProducto = btnAddDeseo[i].getAttribute('prod');
             agregarDeseo(idProducto);
         })        
     }
-})
+    for (let i = 0; i < btnAddCarrito.length; i++) {
+        btnAddCarrito[i].addEventListener("click", function (e) {
+            e.preventDefault();
+            let idProducto = btnAddCarrito[i].getAttribute("prod");
+            agregarCarrito(idProducto, 1);
+        });
+    }
+    cantidadDeseo();
+    cantidadCarrito();
 
+    //ver carrito
+    const myModal = new bootstrap.Modal(document.getElementById('myModal'))
+    verCarrito.addEventListener('click', function(){
+        getListaCarrito();
+        myModal.show();
+    })
+})
+//agregar productos a la lista de deseos
 function agregarDeseo(idProducto) {
     if (localStorage.getItem('listaDeseo') == null) {
         listaDeseo = [];
@@ -40,7 +58,7 @@ function agregarDeseo(idProducto) {
 
     listaDeseo.push({
         "idProducto": idProducto,
-        "cantidad": 1
+        "cantidad": cantidad
     });
     localStorage.setItem('listaDeseo', JSON.stringify(listaDeseo));
     Swal.fire(
@@ -64,28 +82,28 @@ function cantidadDeseo() {
 
 
 
-let listaCarrito;
-document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("listaCarrito") != null) {
-        listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
-    }
+// let listaCarrito;
+// document.addEventListener("DOMContentLoaded", function () {
+//     if (localStorage.getItem("listaCarrito") != null) {
+//         listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
+//     }
 
-    for (let i = 0; i < btnAddCarrito.length; i++) {
-        btnAddCarrito[i].addEventListener("click", function (e) {
-            e.preventDefault();
-            let idProducto = btnAddCarrito[i].getAttribute("prod");
-            agregarCarrito(idProducto, 1);
-        });
-    }
-    cantidadCarrito();
+//     for (let i = 0; i < btnAddCarrito.length; i++) {
+//         btnAddCarrito[i].addEventListener("click", function (e) {
+//             e.preventDefault();
+//             let idProducto = btnAddCarrito[i].getAttribute("prod");
+//             agregarCarrito(idProducto, 1);
+//         });
+//     }
+//     cantidadCarrito();
 
-    //ver carrito
-    const myModal = new bootstrap.Modal(document.getElementById('myModal'))
-    verCarrito.addEventListener('click', function(){
-        getListaCarrito();
-        myModal.show();
-    })
-});
+//     //ver carrito
+//     const myModal = new bootstrap.Modal(document.getElementById('myModal'))
+//     verCarrito.addEventListener('click', function(){
+//         getListaCarrito();
+//         myModal.show();
+//     })
+// });
 
 
 //agregar productos al carrito
