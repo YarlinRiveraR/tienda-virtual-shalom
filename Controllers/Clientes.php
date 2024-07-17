@@ -37,8 +37,8 @@ class Clientes extends Controller
                     $hash =  password_hash($clave, PASSWORD_DEFAULT);
                     $data = $this->model->registroDirecto($nombre, $correo, $hash, $token);
                     if ($data > 0) {
-                        $_SESSION['correo'] =  $correo;
-                        $_SESSION['nombre'] =  $nombre;
+                        $_SESSION['correoCliente'] =  $correo;
+                        $_SESSION['nombreCliente'] =  $nombre;
                         $mensaje =  array('msg' => 'registrado con éxito', 'icono' => 'success', 'token' => $token);
                     } else {
                         $mensaje =  array('msg' => 'error al registrarse', 'icono' => 'error');
@@ -94,6 +94,33 @@ class Clientes extends Controller
         if (!empty($verificar)) {
             $data = $this->model->actualizarVerify($verificar['id']);
             header('Location: ' . BASE_URL . 'clientes');
+        }
+    }
+
+    //login directo
+    public function loginDirecto()
+    {
+        if (isset($_POST['correoLogin']) && isset($_POST['claveLogin'])) {
+            if (empty($_POST['correoLogin']) || empty($_POST['claveLogin'])) {
+                $mensaje =  array('msg' => 'TODOS LOS CAMPOS SON', 'icono' => 'warning');
+            }else {
+                $correo = $_POST['correoLogin'];
+                $clave = $_POST['claveLogin'];
+                $verificar =  $this->model->getVerificar($correo);
+                if (!empty($verificar)) {
+                    if (password_verify($clave, $verificar['clave'])) {
+                        $_SESSION['correoCliente'] =  $verificar['correo'];
+                        $_SESSION['nombreCliente'] =  $verificar['nombre'];
+                        $mensaje =  array('msg' => 'ok', 'icono' => 'success');
+                    } else {
+                        $mensaje =  array('msg' => 'CONTRASEÑA INCORRECTA', 'icono' => 'error');
+                    }
+                } else {
+                    $mensaje =  array('msg' => 'EL CORREO NO EXISTE', 'icono' => 'warning');
+                }
+            }
+            echo json_encode($mensaje, JSON_UNESCAPED_UNICODE);
+            die();
         }
     }
 }

@@ -3,10 +3,14 @@ const btnLogin = document.querySelector('#btnLogin');
 const frmLogin = document.querySelector('#frmLogin');
 const frmRegister = document.querySelector('#frmRegister');
 const registrarse = document.querySelector('#registrarse');
+const login = document.querySelector('#login');
 
 const nombreRegistro = document.querySelector('#nombreRegistro');
 const correoRegistro = document.querySelector('#correoRegistro');
 const claveRegistro = document.querySelector('#claveRegistro');
+
+const correoLogin = document.querySelector('#correoLogin');
+const claveLogin = document.querySelector('#claveLogin');
 
 document.addEventListener('DOMContentLoaded', function () {
     btnRegister.addEventListener('click', function () {
@@ -42,6 +46,31 @@ document.addEventListener('DOMContentLoaded', function () {
                             enviarCorreo(correoRegistro.value, res.token);
                         }, 2000);
                     }
+                }
+            }
+        }  
+    });
+    //login directo
+    login.addEventListener('click', function () {
+        if (correoLogin.value == '' || 
+            claveLogin.value == '') {
+            Swal.fire('Aviso?', 'TODOS LOS CAMPOS SON REQUERIDOS', 'warning');
+        } else{
+            let formData =  new FormData();
+            formData.append('correoLogin', correoLogin.value);
+            formData.append('claveLogin', claveLogin.value);
+            const url = base_url + 'clientes/loginDirecto';
+            const http = new XMLHttpRequest();
+            http.open('POST', url, true);
+            http.send(formData);
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    // const res = JSON.parse(this.responseText);
+                    // Swal.fire('Aviso?', res.msg, res.icono);
+                    // if (res.icono == 'success') {
+                        
+                    // }
                 }
             }
         }  
