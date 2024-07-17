@@ -8,4 +8,9 @@ const CHARSET = "charset=utf8";
 const TITLE = "Shalom Pijamas";
 const MONEDA = "COP";
 const CLIENT_ID = "";
+
+const USER_SMTP = "shalom.pijamas.notificaciones@gmail.com";
+const PASS_SMTP = "ramqcpwnfexdwtec";
+const PUERTO_SMTP = 465;
+const HOST_SMTP = "smtp.gmail.com";
 ?>
