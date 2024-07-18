@@ -37,6 +37,7 @@ class Clientes extends Controller
                     $hash =  password_hash($clave, PASSWORD_DEFAULT);
                     $data = $this->model->registroDirecto($nombre, $correo, $hash, $token);
                     if ($data > 0) {
+                        $_SESSION['idCliente'] = $data;
                         $_SESSION['correoCliente'] =  $correo;
                         $_SESSION['nombreCliente'] =  $nombre;
                         $mensaje =  array('msg' => 'registrado con éxito', 'icono' => 'success', 'token' => $token);
@@ -109,6 +110,7 @@ class Clientes extends Controller
                 $verificar =  $this->model->getVerificar($correo);
                 if (!empty($verificar)) {
                     if (password_verify($clave, $verificar['clave'])) {
+                        $_SESSION['idCliente'] = $verificar['id'];
                         $_SESSION['correoCliente'] =  $verificar['correo'];
                         $_SESSION['nombreCliente'] =  $verificar['nombre'];
                         $mensaje =  array('msg' => 'ok', 'icono' => 'success');
