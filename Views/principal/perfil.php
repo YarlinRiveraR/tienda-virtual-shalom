@@ -19,7 +19,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -45,7 +45,7 @@
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-
+                                        <div id="paypal-button-container"></div>
                                     </div>
                                 </div>
                             </div>

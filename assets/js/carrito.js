@@ -50,7 +50,7 @@ function agregarDeseo(idProducto) {
                     'Aviso?',
                     'EL PRODUCTO YA ESTÁ EN TU LISTA DE DESEO',
                     'warning'
-                )
+                );
                 return;
             }            
         }
