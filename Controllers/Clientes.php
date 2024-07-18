@@ -15,11 +15,11 @@ class Clientes extends Controller
     }
     public function index()
     {
-        if (empty($_SESSION['correo'])) {
+        if (empty($_SESSION['correoCliente'])) {
             header('Location: ' . BASE_URL);
         }
         $data['title'] = 'Tu Perfil';
-        $data['verificar'] =  $this->model->getVerificar($_SESSION['correo']);
+        $data['verificar'] =  $this->model->getVerificar($_SESSION['correoCliente']);
         $this->views->getView('principal', "perfil", $data);
     }
     public function registroDirecto()
